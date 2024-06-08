@@ -1,0 +1,18 @@
+[
+    {
+        "ID":1,
+        "Nombre": "Administracion de empresas",
+        "Grado" : "",
+        "Universidad": "Unpaz"      
+    },
+    {   "ID":2,
+        "Nombre": "Analista de sistemas",
+        "Grado" : "",
+        "Universidad": "Unpaz"        
+    },
+    {   "ID":3,
+        "Nombre": "Enfermeria",
+        "Grado" : "",
+        "Universidad": "Universidad de medicina"      
+    }
+]
