@@ -1,4 +1,4 @@
-const { Carrera, Materia, Tipo_Grado } = require('../models')
+const { Carrera, Materia, Tipo_Grado } = require('../../models')
 const controller = {}
 
 const getAllCarreras = async(req, res) => {
