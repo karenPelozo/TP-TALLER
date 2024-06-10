@@ -2,12 +2,8 @@ const {Materia} = require('../../models')
 const controller = {}
 
 const getAllMateria= async(req, res) => {
-    const materias = await materia.findAll({
-        include: [
-          { model: Carrera, as: 'id' },
-        ]
-    })
-    res.status(200).json(carreras);
+    const materias = await materia.findAll()
+    res.status(200).json(materias);
 }
 
 const getMateriaById = async(req, res) => {
