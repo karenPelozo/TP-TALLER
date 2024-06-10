@@ -13,7 +13,7 @@ router.delete('/carreras/:id', CarreraController.deleteCarrera);
 router.post('/carreras/:id/materias', validate(materiaSchema), CarreraController.createMateriaInCarrera);
 router.get('/carreras/:id/materias', CarreraController.getMateriasInCarrera);
 router.get('/materias', MateriaController.getAllMateria);
-router.get('/materias/:id', MateriaController.getMateriaById);
+router.get('/materias/:id', validate(materiaSchema),MateriaController.getMateriaById);
 router.delete('/materias/:id', MateriaController.deleteMateria);
 
 module.exports = router;
