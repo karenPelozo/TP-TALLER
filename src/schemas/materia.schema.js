@@ -1,9 +1,9 @@
 const Joi = require('joi');
 
 const materiaSchema = Joi.object({
-  nombre: Joi.string().min(3).max(50).required(),
+  nombre: Joi.string().required(),
   cuatrimestral: Joi.boolean().required(),
-  anio: Joi.number().integer().min(1).required(),
+  anio: Joi.number().integer().required(),
   carreraId: Joi.number().integer().optional()
 });
 
