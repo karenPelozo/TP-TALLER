@@ -1,20 +1,31 @@
 'use strict';
-const { Model } = require('sequelize');
-
-module.exports = (sequelize, DataTypes) => {
-  class Universidad extends Model {
-    static associate(models) {
-      Universidad.hasMany(models.Carrera, { foreignKey: 'universidad', as: 'carreras' });
-    }
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('universidads', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      nombre: {
+        type: Sequelize.STRING
+      },
+      localidad: {
+        type: Sequelize.STRING
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('universidads');
   }
-
-  Universidad.init({
-    nombre: DataTypes.STRING,
-    localidad: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Universidad',
-  });
-
-  return Universidad;
 };

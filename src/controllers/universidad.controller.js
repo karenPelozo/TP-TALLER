@@ -1,4 +1,4 @@
-const { Universidad, Carrera } = require('../../models');
+const { Universidad, Universidad } = require('../../models');
 
 const getAllUniversidades = async (req, res) => {
   try {
@@ -24,7 +24,7 @@ const getUniversidadById = async (req, res) => {
     if (universidad) {
       res.status(200).json(universidad);
     } else {
-      res.status(404).json({ message: 'Universidad not found' });
+      res.status(404).json({ message: 'Universidad no encontrada' });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -49,7 +49,7 @@ const deleteUniversidad = async (req, res) => {
       await universidad.destroy();
       res.status(200).json({ message: 'Universidad eliminada' });
     } else {
-      res.status(404).json({ message: 'Universidad not found' });
+      res.status(404).json({ message: 'Universidad no encontrada' });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -62,3 +62,4 @@ module.exports = {
   createUniversidad,
   deleteUniversidad
 };
+
