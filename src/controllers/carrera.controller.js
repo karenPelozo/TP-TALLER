@@ -1,62 +1,103 @@
-const { Carrera, Materia, Tipo_Grado } = require('../../models')
-const controller = {}
+const { Carrera, Materia, Tipo_Grado, Universidad } = require('../../models');
 
-const getAllCarreras = async(req, res) => {
+const getAllCarreras = async (req, res) => {
+  try {
     const carreras = await Carrera.findAll({
-        include: [
-          { model: Materia, as: 'materias' },
-          { model: Tipo_Grado, as: 'tipoGrado' }
-        ]
-    })
-    res.status(200).json(carreras);
-}
-
-const getCarreraById = async(req, res) => {
-    const id = req.params.id;
-    const carrera = await Carrera.findByPk(id, {
-        include: [
-          { model: Materia, as: 'materias' },
-          { model: Tipo_Grado, as: 'tipoGrado' }
-        ]
+      include: [
+        { model: Materia, as: 'materias' },
+        { model: Tipo_Grado, as: 'tipoGrado' },
+        { model: Universidad, as: 'universidad' }
+      ]
     });
-    return res.status(200).json(carrera)
-}
+    res.status(200).json(carreras);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getCarreraById = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const carrera = await Carrera.findByPk(id, {
+      include: [
+        { model: Materia, as: 'materias' },
+        { model: Tipo_Grado, as: 'tipoGrado' },
+        { model: Universidad, as: 'universidad' }
+      ]
+    });
+    if (carrera) {
+      res.status(200).json(carrera);
+    } else {
+      res.status(404).json({ message: 'Carrera not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 const createCarrera = async (req, res) => {
-    const { nombre, grado, universidad } = req.body;
+  const { nombre, grado, universidad } = req.body;
+  try {
     const carrera = await Carrera.create({ nombre, grado, universidad });
     res.status(201).json(carrera);
-}
-  
-const deleteCarrera = async (req, res) => {
-    const id = req.params.id;
-    const carrera = await Carrera.findByPk(id);
-    await carrera.destroy();
-    res.status(200).json({ message: 'Carrera eliminada' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
-  
-const createMateriaInCarrera = async (req, res) => {
-    const id = req.params.id;
-    const { nombre, cuatrimestral, anio } = req.body;
+
+const deleteCarrera = async (req, res) => {
+  const id = req.params.id;
+  try {
     const carrera = await Carrera.findByPk(id);
-    const materia = await Materia.create({ nombre, cuatrimestral, anio });
-    await carrera.addMateria(materia);
-    res.status(201).json(materia);
+    if (carrera) {
+      await carrera.destroy();
+      res.status(200).json({ message: 'Carrera eliminada' });
+    } else {
+      res.status(404).json({ message: 'Carrera not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const createMateriaInCarrera = async (req, res) => {
+  const id = req.params.id;
+  const { nombre, cuatrimestral, anio } = req.body;
+  try {
+    const carrera = await Carrera.findByPk(id);
+    if (carrera) {
+      const materia = await Materia.create({ nombre, cuatrimestral, anio });
+      await carrera.addMateria(materia);
+      res.status(201).json(materia);
+    } else {
+      res.status(404).json({ message: 'Carrera not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 const getMateriasInCarrera = async (req, res) => {
-    const id = req.params.id;
+  const id = req.params.id;
+  try {
     const carrera = await Carrera.findByPk(id, {
       include: { model: Materia, as: 'materias' }
     });
-    res.status(200).json(carrera.materias);
-}
+    if (carrera) {
+      res.status(200).json(carrera.materias);
+    } else {
+      res.status(404).json({ message: 'Carrera not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-controller.getAllCarreras = getAllCarreras;
-controller.getCarreraById = getCarreraById;
-controller.createCarrera = createCarrera;
-controller.deleteCarrera = deleteCarrera;
-controller.createMateriaInCarrera = createMateriaInCarrera;
-controller.getMateriasInCarrera = getMateriasInCarrera;
-
-module.exports =controller;
+module.exports = {
+  getAllCarreras,
+  getCarreraById,
+  createCarrera,
+  deleteCarrera,
+  createMateriaInCarrera,
+  getMateriasInCarrera
+};

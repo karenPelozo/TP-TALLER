@@ -1,19 +1,13 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Materia extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      Materia.belongsToMany(models.Carrera, { through: 'Carrera_Materia', foreignKey: 'idCarrera', as: 'carrera' });
-    
+      Materia.belongsToMany(models.Carrera, { through: 'Carrera_Materia', foreignKey: 'idMateria', as: 'carreras' });
     }
   }
+
   Materia.init({
     nombre: DataTypes.STRING,
     cuatrimestral: DataTypes.BOOLEAN,
@@ -23,5 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Materia',
   });
+
   return Materia;
 };
