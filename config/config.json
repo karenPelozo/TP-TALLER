@@ -4,20 +4,23 @@
     "password": null,
     "database": "nodemonios_db",
     "host": "127.0.0.1",
-    "dialect": "sqlite3"
+    "dialect": "sqlite",
+    "storage": "./data/database.sqlite"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "sqlite",
+    "storage": "./data/test-database.sqlite"
   },
   "production": {
     "username": "root",
     "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "sqlite",
+    "storage": "./data/test-database.sqlite"
   }
 }
