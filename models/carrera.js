@@ -6,14 +6,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Carrera.belongsToMany(models.Materia, { through: 'Carrera_Materia', foreignKey: 'idCarrera', as: 'materias' });
       Carrera.belongsTo(models.Tipo_Grado, { foreignKey: 'grado', as: 'tipoGrado' });
-      Carrera.belongsTo(models.Universidad, { foreignKey: 'universidad', as: 'universidadAsociada' });
+      Carrera.belongsTo(models.Universidad, { foreignKey: 'universidadAsociada', as: 'universidadRelacionada' });
     }
   }
 
   Carrera.init({
     nombre: DataTypes.STRING,
     grado: DataTypes.INTEGER,
-    universidad: DataTypes.INTEGER
+    universidadAsociada: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Carrera',

@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     nombre: DataTypes.STRING,
     cuatrimestral: DataTypes.BOOLEAN,
     anio: DataTypes.INTEGER,
-    carreraId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Materia',

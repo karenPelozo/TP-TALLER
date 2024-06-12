@@ -1,22 +1,32 @@
 const models = require('../../models');
-const Joi = require('joi');
 
-const validateEntityExists = (entity) => {
+const validateEntityExists = (model) => {
   return async (req, res, next) => {
     const { id } = req.params;
-    const model = models[entity];
     const record = await model.findByPk(id);
     if (!record) {
-      return res.status(404).json({ message: `${entity} no encontrado/a` });
+      return res.status(404).json({ message: `${model.name} no encontrado/a` });
+    }
+    next();
+  };
+};
+
+const validateFieldExists = (model, field) => {
+  return async (req, res, next) => {
+    const id = req.body[field];
+    const record = await model.findByPk(id);
+    if (!record) {
+      return res.status(404).json({ message: `${model.name} con id ${id} no encontrado/a` });
     }
     next();
   };
 };
 
 const validateCarreraMateriasExists = async (req, res, next) => {
-  const { id_materia, id_carrera } = req.params;
-  const record = await models.CarreraMaterias.findOne({
-    where: { id_materia, id_carrera }
+  const id_materia = req.body.idMateria;
+  const id_carrera = req.body.idCarrera;
+  const record = await models.Carrera_Materia.findOne({
+    where: { idMateria: id_materia, idCarrera: id_carrera }
   });
   if (!record) {
     return res.status(404).json({ message: 'Asociación de carrera y materias no encontrada' });
@@ -37,5 +47,6 @@ const validateSchema = (schema) => {
 module.exports = {
   validateEntityExists,
   validateCarreraMateriasExists,
-  validateSchema
+  validateSchema,
+  validateFieldExists
 };
