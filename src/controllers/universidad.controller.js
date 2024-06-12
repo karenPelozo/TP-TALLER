@@ -1,4 +1,4 @@
-const { Universidad, Universidad } = require('../../models');
+const { Universidad } = require('../../models');
 
 const getAllUniversidades = async (req, res) => {
   try {

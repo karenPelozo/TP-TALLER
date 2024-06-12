@@ -1,10 +1,5 @@
-const models = {
-  Universidad: require('./models/Universidad'),
-  Carrera: require('./models/Carrera'),
-  TipoGrado: require('./models/TipoGrado'),
-  Materia: require('./models/Materia'),
-  CarreraMaterias: require('./models/CarreraMaterias')
-};
+const models = require('../../models');
+const Joi = require('joi');
 
 const validateEntityExists = (entity) => {
   return async (req, res, next) => {
@@ -18,7 +13,6 @@ const validateEntityExists = (entity) => {
   };
 };
 
-
 const validateCarreraMateriasExists = async (req, res, next) => {
   const { id_materia, id_carrera } = req.params;
   const record = await models.CarreraMaterias.findOne({
@@ -30,7 +24,18 @@ const validateCarreraMateriasExists = async (req, res, next) => {
   next();
 };
 
+const validateSchema = (schema) => {
+  return (req, res, next) => {
+    const { error } = schema.validate(req.body);
+    if (error) {
+      return res.status(400).json({ message: error.details[0].message });
+    }
+    next();
+  };
+};
+
 module.exports = {
   validateEntityExists,
-  validateCarreraMateriasExists
+  validateCarreraMateriasExists,
+  validateSchema
 };

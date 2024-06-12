@@ -6,7 +6,7 @@ const universidadSchema = require('../schemas/universidad.schema');
 
 router.get('/', UniversidadController.getAllUniversidades);
 router.get('/:id', UniversidadController.getUniversidadById);
-router.post('/', validate(universidadSchema), UniversidadController.createUniversidad);
+router.post('/', validate.validateSchema(universidadSchema), UniversidadController.createUniversidad);
 router.delete('/:id', UniversidadController.deleteUniversidad);
 
 module.exports = router;

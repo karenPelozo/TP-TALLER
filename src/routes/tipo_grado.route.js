@@ -6,7 +6,7 @@ const tipoGradoSchema = require('../schemas/tipo_grado.schema');
 
 router.get('/', TipoGradoController.getAllTipoGrados);
 router.get('/:id', TipoGradoController.getTipoGradoById);
-router.post('/', validate(tipoGradoSchema), TipoGradoController.createTipoGrado);
+router.post('/', validate.validateSchema(tipoGradoSchema), TipoGradoController.createTipoGrado);
 router.delete('/:id', TipoGradoController.deleteTipoGrado);
 
 module.exports = router;
