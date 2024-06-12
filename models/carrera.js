@@ -13,7 +13,13 @@ module.exports = (sequelize, DataTypes) => {
   Carrera.init({
     nombre: DataTypes.STRING,
     grado: DataTypes.INTEGER,
-    universidadAsociada: DataTypes.INTEGER
+    universidadAsociada: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Universidads',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'Carrera',

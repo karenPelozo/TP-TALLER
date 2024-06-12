@@ -24,8 +24,8 @@ const getCarreraById = async (req, res) => {
 };
 
 const createCarrera = async (req, res) => {
-  const { nombre, grado, universidad } = req.body;
-  const carrera = await Carrera.create({ nombre, grado, universidad });
+  const { nombre, grado, universidadAsociada } = req.body;
+  const carrera = await Carrera.create({ nombre, grado, universidadAsociada });
   res.status(201).json(carrera);
 };
 

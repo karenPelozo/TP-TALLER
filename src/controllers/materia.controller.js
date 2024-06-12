@@ -1,4 +1,4 @@
-const { Materia, Carrera_Materia } = require('../../models');
+const { Materia, Carrera_Materia, Carrera } = require('../../models');
 
 const getAllMaterias = async (req, res) => {
   const materias = await Materia.findAll({

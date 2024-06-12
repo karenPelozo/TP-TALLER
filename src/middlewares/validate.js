@@ -25,11 +25,10 @@ const validateFieldExists = (model, field) => {
 const validateCarreraMateriasExists = async (req, res, next) => {
   const id_materia = req.body.idMateria;
   const id_carrera = req.body.idCarrera;
-  const record = await models.Carrera_Materia.findOne({
-    where: { idMateria: id_materia, idCarrera: id_carrera }
-  });
-  if (!record) {
-    return res.status(404).json({ message: 'Asociación de carrera y materias no encontrada' });
+  const record_carrera = await models.Carrera.findByPk(id_carrera)
+  const record_materia = await models.Materia.findByPk(id_materia)
+  if (!record_carrera || !record_materia) {
+    return res.status(404).json({ message: 'Asociación de carrera y materias no realizada' });
   }
   next();
 };
