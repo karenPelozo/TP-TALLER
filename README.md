@@ -9,15 +9,35 @@ TP-Laboratorio de Programación y Lenguaje
 
 El presente proyecto consiste en una APIREST desarrollado en NODE.js, con distintas dependencias que permiten el manejo y consulta de la misma, a modo de CRUD.
 
-# Guia de Uso o Descarga:
-A continuacion se detalla una guia para el uso de la misma, el cual se podrá descargar desde el enlace provisto:
-1.
-  a) Clonarlo desde el botón <Code>, copiando la direccion URL del repositorio, seleccionar HTTPS.
-  b) Desde la terminal Gitbash, cambie al directorio que desea para clonar el proyecto.
-  b) Escriba el comando git clone y a continuación pegué la URL, luego darle enter.
+## Guía de Uso.
 
-2.
-  a) Desde la misma terminal deberá instalar las dependencias Express.js - Nodemon.js - Joi  para el debido funcionamiento del proyecto con el comando npm install.
+A continuación, se detallan dos opciones para obtener el proyecto: clonarlo desde el repositorio o descargarlo como un archivo ZIP.
+
+### Opción 1. Clonación del Repositorio.
+
+a. Clonar el repositorio desde el botón <**Code**>, copiando la dirección URL del repositorio y seleccionando **HTTPS**.
+
+b. Desde la terminal **Git Bash**, cambie al directorio en el que desea clonar el proyecto.
+
+c. Escriba el comando `git clone` y, a continuación, pegue la URL, luego presione **Enter**.
+
+### Opción 2. Descargar Repositorio.
+
+a. Descargar el repositorio desde el botón <**Code**>, en la opción **Download ZIP**.
+
+b. Descomprimir el archivo descargado en la dirección donde desea desplegar el proyecto.
+
+## Guía de Arranque.
+
+A continuación, se detallara una guía para iniciar el servidor.
+
+### 1. Abrir el proyecto.
+
+a. Debera abrir el proyecto con un editor de codigo, por ejemplo, VSCode.
+
+b. Debera correr el siguiente comando en la terminal: **npm install**, para que se descarguen las dependencias necesarias para el proyecto.
+
+c. Debera utilizar el comando **npm run dev** para que inicie el servidor.
 
 
 Esta proyecto utiliza las siguiente estructura de  tablas: 
@@ -27,11 +47,18 @@ Esta proyecto utiliza las siguiente estructura de  tablas:
 
 ![DIAGRAMA](DER.png)
 
-Una universidad puede tener muchas carreras. 
-Una carrera puede tener muchas materias.
-Una materia puede pertenecer a muchas carreras.
-Una carrera puede tener un tipo de grado.
-Un tipo de grado puede estar asociado a muchas carreras.
+- Una universidad puede tener muchas carreras. 
+
+- Una carrera puede tener muchas materias.
+
+- Una materia puede pertenecer a muchas carreras.
+
+- Una carrera puede tener un tipo de grado.
+
+- Un tipo de grado puede estar asociado a muchas carreras.
+
+- Al borrar una materia se borrara su asociacion con carreras.
+
 
 # Enpoints:
 
@@ -62,6 +89,33 @@ Un tipo de grado puede estar asociado a muchas carreras.
 
 4. Este proyecto utiliza un motor de base de datos SQLIte3 y la base será inicializado cuando ejecute el comando npm run dev.
 
+## Guía para Importar el Archivo Postman y Probar la API
+
+A continuación, se detalla una guía para importar el archivo Postman con todas las solicitudes necesarias para probar la API de este proyecto.
+
+### 1. Descargar el Archivo Postman
+
+Utilice el archivo Postman que se encuentra en el repositorio (`TP-TALLER.postman_collection.json`).
+
+### 2. Abrir Postman
+
+Abra Postman en su computadora. Si no tiene Postman instalado, puede descargarlo desde [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
+
+### 3. Importar el Archivo Postman
+
+Siga estos pasos para importar el archivo Postman:
+
+a. En la esquina superior izquierda de Postman, haga clic en el botón **Import**.
+
+b. En la ventana de importación, seleccione la pestaña **Upload Files**.
+
+c. Arrastre y suelte el archivo (`TP-TALLER.postman_collection.json` que se encuentra en la raiz del proyecto) en el área designada o haga clic en **Choose Files** y seleccione el archivo desde su sistema de archivos.
+
+d. Haga clic en **Import** para importar el archivo.
+
+### 4. Verificar las Colecciones Importadas
+
+Una vez que el archivo se haya importado, debería ver una nueva colección en la barra lateral izquierda de Postman con el nombre de la colección que fue exportada. Esta colección contiene todas las solicitudes necesarias para probar la API del proyecto.
 
 
 
