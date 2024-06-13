@@ -8,9 +8,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//sequelize.sync({ force: true }).then(() => {
-//  console.log('Database & tables created!');
-//});
+sequelize.sync({ force: true }).then(() => {
+  console.log('Database & tables created!');
+});
 
 
 app.use('/api', routes);
