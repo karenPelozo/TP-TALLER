@@ -53,6 +53,24 @@
 						"url": "http://localhost:3000/api/universidades/1"
 					},
 					"response": []
+				},
+				{
+					"name": "updateUniversidad",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"U.N.G.S.\",\r\n    \"localidad\": \"SAN MIGUEL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/universidades/1"
+					},
+					"response": []
 				}
 			]
 		},
@@ -84,7 +102,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Ingenieria en Sistemas\",\r\n    \"grado\": 1,\r\n    \"universidadAsociada\": 1\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Ingenieria en Sistemas 2\",\r\n    \"grado\": 1,\r\n    \"universidadAsociada\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -100,6 +118,24 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"url": "http://localhost:3000/api/carreras/1"
+					},
+					"response": []
+				},
+				{
+					"name": "updateCarrera",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Ingenieria en Sistemas 2\",\r\n    \"grado\": 2,\r\n    \"universidadAsociada\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": "http://localhost:3000/api/carreras/1"
 					},
 					"response": []
@@ -134,7 +170,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nivel\": \"PostGrado\"\r\n}",
+							"raw": "{\r\n    \"nivel\": \"PreGrado\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -146,10 +182,19 @@
 					"response": []
 				},
 				{
-					"name": "DeleteTipoGradoById",
+					"name": "updateTipoGrado",
 					"request": {
-						"method": "DELETE",
+						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nivel\": \"Grado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": "http://localhost:3000/api/tipo-grados/1"
 					},
 					"response": []
@@ -199,7 +244,26 @@
 					"name": "DeleteMateriaById",
 					"request": {
 						"method": "DELETE",
-						"header": []
+						"header": [],
+						"url": "http://localhost:3000/api/materias/1"
+					},
+					"response": []
+				},
+				{
+					"name": "updateMateria",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Matematica 2\",\r\n    \"cuatrimestral\": true,\r\n    \"anio\": 1,\r\n    \"carreraId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/materias/2"
 					},
 					"response": []
 				}
@@ -208,24 +272,6 @@
 		{
 			"name": "CarreraMaterias",
 			"item": [
-				{
-					"name": "createAssociationMateriaCarrera",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"idCarrera\": 1,\r\n    \"idMateria\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:3000/api/carrera-materias"
-					},
-					"response": []
-				},
 				{
 					"name": "getMateriasAsociadasACarreras",
 					"request": {
@@ -236,33 +282,20 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "createAsociationBetweenMateriaCarrera",
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/api/carrera-materias/?idCarrera=1&idMateria=1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"carrera-materias",
-								""
-							],
-							"query": [
-								{
-									"key": "idCarrera",
-									"value": "1"
-								},
-								{
-									"key": "idMateria",
-									"value": "1"
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCarrera\": 2,\r\n    \"idMateria\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
-						}
+							}
+						},
+						"url": "http://localhost:3000/api/carrera-materias"
 					},
 					"response": []
 				}

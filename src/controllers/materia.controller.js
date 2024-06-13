@@ -3,7 +3,7 @@ const { Materia, Carrera_Materia, Carrera } = require('../../models');
 const getAllMaterias = async (req, res) => {
   const materias = await Materia.findAll({
     include: [
-      { Model: Carrera, as : "carreras" }
+      { model: Carrera, as : "carreras" }
     ]
   });
   res.status(200).json(materias);
@@ -29,9 +29,21 @@ const deleteMateria = async (req, res) => {
   res.status(200).json({ message: 'Materia eliminada' });
 };
 
+const updateMateria = async (req, res) =>{
+  const id = req.params.id;
+  const materiaDto = req.body;
+  const materiaAModificar = await Materia.findByPk(id);
+  materiaAModificar.nombre = materiaDto.nombre;
+  materiaAModificar.cuatrimestral = materiaDto.cuatrimestral;
+  materiaAModificar.anio = materiaDto.anio;
+  await materiaAModificar.save();
+  res.status(201).json(materiaAModificar)
+}
+
 module.exports = {
   getAllMaterias,
   getMateriaById,
   createMateria,
-  deleteMateria
+  deleteMateria,
+  updateMateria
 };

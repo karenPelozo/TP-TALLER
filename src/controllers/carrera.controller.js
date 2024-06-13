@@ -36,28 +36,21 @@ const deleteCarrera = async (req, res) => {
   res.status(200).json({ message: 'Carrera eliminada' });
 };
 
-const createMateriaInCarrera = async (req, res) => {
+const updateCarrera = async (req, res) =>{
   const id = req.params.id;
-  const { nombre, cuatrimestral, anio } = req.body;
-  const carrera = await Carrera.findByPk(id);
-  const materia = await Materia.create({ nombre, cuatrimestral, anio });
-  await carrera.addMateria(materia);
-  res.status(201).json(materia);
-};
-
-const getMateriasInCarrera = async (req, res) => {
-  const id = req.params.id;
-  const carrera = await Carrera.findByPk(id, {
-    include: { model: Materia, as: 'materias' }
-  });
-  res.status(200).json(carrera.materias);
-};
+  const carreraDto = req.body;
+  const carreraAModificar = await Carrera.findByPk(id);
+  carreraAModificar.nombre = carreraDto.nombre;
+  carreraAModificar.grado = carreraDto.grado;
+  carreraAModificar.universidadAsociada = carreraDto.universidadAsociada;
+  await carreraAModificar.save();
+  res.status(201).json(carreraAModificar)
+}
 
 module.exports = {
   getAllCarreras,
   getCarreraById,
   createCarrera,
   deleteCarrera,
-  createMateriaInCarrera,
-  getMateriasInCarrera
+  updateCarrera
 };

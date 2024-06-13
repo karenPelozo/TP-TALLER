@@ -9,5 +9,6 @@ router.get('/', MateriaController.getAllMaterias);
 router.get('/:id', validate.validateEntityExists(Materia), MateriaController.getMateriaById);
 router.post('/', validate.validateSchema(materiaSchema), validate.validateFieldExists(Carrera, 'carreraId'),MateriaController.createMateria);
 router.delete('/:id', validate.validateEntityExists(Materia), MateriaController.deleteMateria);
+router.put('/:id', validate.validateEntityExists(Materia), validate.validateSchema(materiaSchema), MateriaController.updateMateria)
 
 module.exports = router;

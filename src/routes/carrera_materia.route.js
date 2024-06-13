@@ -6,6 +6,5 @@ const carreraMateriaSchema = require('../schemas/carrera_materia.schema');
 
 router.get('/', CarreraMateriaController.getAsociations)
 router.post('/', validate.validateSchema(carreraMateriaSchema), validate.validateCarreraMateriasExists, CarreraMateriaController.createCarreraMateria);
-router.delete('/:idCarrera/:idMateria', CarreraMateriaController.deleteCarreraMateria);
 
 module.exports = router;

@@ -32,10 +32,21 @@ const deleteUniversidad = async (req, res) => {
   res.status(200).json({ message: 'Universidad eliminada' });
 };
 
+const updateUniversidad = async (req, res) =>{
+  const id = req.params.id;
+  const universidadDto = req.body;
+  const universidadAModificar = await Universidad.findByPk(id);
+  universidadAModificar.nombre = universidadDto.nombre;
+  universidadAModificar.localidad = universidadDto.localidad;
+  await universidadAModificar.save();
+  res.status(201).json(universidadAModificar)
+}
+
 module.exports = {
   getAllUniversidades,
   getUniversidadById,
   createUniversidad,
-  deleteUniversidad
+  deleteUniversidad,
+  updateUniversidad
 };
 

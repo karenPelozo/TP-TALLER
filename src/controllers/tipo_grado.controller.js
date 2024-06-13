@@ -17,16 +17,18 @@ const createTipoGrado = async (req, res) => {
   res.status(201).json(tipo);
 };
 
-const deleteTipoGrado = async (req, res) => {
+const updateTipoGrado = async (req, res) =>{
   const id = req.params.id;
-  const tipo = await Tipo_Grado.findByPk(id);
-  await tipo.destroy();
-  res.status(200).json({ message: 'Tipo de Grado eliminado' });
-};
+  const tipoGradoDto = req.body;
+  const tipoGradoAModificar = await Tipo_Grado.findByPk(id);
+  tipoGradoAModificar.nivel = tipoGradoDto.nivel;
+  await tipoGradoAModificar.save();
+  res.status(201).json(tipoGradoAModificar)
+}
 
 module.exports = {
   getAllTipoGrados,
   getTipoGradoById,
   createTipoGrado,
-  deleteTipoGrado
+  updateTipoGrado
 };

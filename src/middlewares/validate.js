@@ -43,9 +43,23 @@ const validateSchema = (schema) => {
   };
 };
 
+const validateNoAssociationExists = (model, entity, associatedField) => {
+  return async (req, res, next) => { 
+  const id = req.params.id;
+  const record = await model.findByPk(id, {
+    include: [{ model: entity, as: associatedField }]
+  });
+  if (record[associatedField].length > 0) {
+    return res.status(400).json({ message: `No se puede eliminar la entidad ${model.name} porque tiene entidades ${entity.name} asociadas.`});
+  }
+  next();
+  };
+};
+
 module.exports = {
   validateEntityExists,
   validateCarreraMateriasExists,
   validateSchema,
-  validateFieldExists
+  validateFieldExists,
+  validateNoAssociationExists
 };
